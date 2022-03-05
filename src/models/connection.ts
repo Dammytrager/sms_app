@@ -1,11 +1,18 @@
 import { Sequelize } from "sequelize";
-import { database} from "../config/config";
+import { database } from "../config/config";
 
-// @ts-ignore
-let sequelize = new Sequelize(database.name, database.user, database.pass, {
-    host: database.host,
-    dialect: database.dialect,
-    logging: false
-});
+let sequelize = !!database.database_url ?
+    // @ts-ignore
+    new Sequelize(database.database_url, {
+        dialect: database.dialect,
+        logging: false
+        })
+    :
+    // @ts-ignore
+    new Sequelize(database.name, database.user, database.pass, {
+        host: database.host,
+        dialect: database.dialect,
+        logging: false
+    });
 
 export default sequelize;
