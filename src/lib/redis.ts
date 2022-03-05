@@ -1,8 +1,8 @@
-import { createClient } from "redis";
-import { redis } from "../config/config";
+import * as redis from "redis";
+import { redis as redisConfig } from "../config/config";
 
 // @ts-ignore
-const client = createClient(redis.url);
+const client = redis.createClient(redisConfig.url);
 
 (async() => {
     await client.connect();

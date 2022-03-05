@@ -22,7 +22,6 @@ export default class MessageHandler {
 
     static async outbound(req: Request, res: Response, next: NextFunction) {
         try {
-            const text = req.body.text.replace(/\r?\n|\r/g, "");
             const from = req.body.from;
             const to  = req.body.to;
 

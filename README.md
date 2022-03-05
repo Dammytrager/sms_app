@@ -1,10 +1,12 @@
-#  Typescript Node Boiler plate
-> Boiler plate for node applications written with typescript
+#  Setup Instructions for this app
+> This app is written with typescript
 
 ## Requirements
 
 - [node](https://nodejs.org/)
 - npm 
+- Database (PostgresQL)
+- Redis
 
 ## Install Dependencies
 #### Node.js Dependencies
@@ -13,20 +15,41 @@ npm install
 ```
 
 ## Environment Variables
-Make a copy of `.env.sample` to `.env` in the env directory.
+Create a new file `.env` in the root directory and copy the contents 
+of `.env.sample` into it, then fill accordingly
 
-### Update Port in package.json
-Update kill script in the package.json and change port from 7000 to the port set in the `.env`
 
-### Transpiling to Javascript
+## Database
+
+### Setting up the DB
+Create App Database
+```bash
+createdb <DB_NAME>
 ```
-npm run build:dev
+Create Test Database
+```bash
+createdb <TEST_DB>
+```
+Populate DB with table and records
+```bash
+npm run setup-db
 ```
 
-### Running Application
-```
-npm run watch:dev
+
+## Running Application
+Ensure redis is running and the database is connected
+
+#### Dev Mode
+```bash
+npm run start-dev
 ```
 
-## Authors
-- Malomo Damilare <damilaremalomo@gmail.com>
+#### Live Mode
+```bash
+npm start
+```
+
+## Running Tests
+```bash
+npm test
+```

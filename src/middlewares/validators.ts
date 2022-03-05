@@ -9,7 +9,7 @@ export class Validators {
 
         if (!Validators.withinBounds(6, 16, body.from)) return res.status(400).json({message: '', error: 'from is invalid'});
         if (!Validators.withinBounds(6, 16, body.to)) return res.status(400).json({message: '', error: 'to is invalid'});
-        if (!Validators.withinBounds(1, 120, body.from)) return res.status(400).json({message: '', error: 'text is invalid'});
+        if (!Validators.withinBounds(1, 120, body.text)) return res.status(400).json({message: '', error: 'text is invalid'});
 
         // @ts-ignore
         if (!Validators.exists(body.to, req.account.PhoneNumbers)) return res.status(404).json({message: '', error: 'to parameter not found'});
@@ -25,7 +25,7 @@ export class Validators {
 
         if (!Validators.withinBounds(6, 16, body.from)) return res.status(400).json({message: '', error: 'from is invalid'});
         if (!Validators.withinBounds(6, 16, body.to)) return res.status(400).json({message: '', error: 'to is invalid'});
-        if (!Validators.withinBounds(1, 120, body.from)) return res.status(400).json({message: '', error: 'text is invalid'});
+        if (!Validators.withinBounds(1, 120, body.text)) return res.status(400).json({message: '', error: 'text is invalid'});
 
         // @ts-ignore
         if (!Validators.exists(body.from, req.account.PhoneNumbers)) return res.status(404).json({message: '', error: 'from parameter not found'});
