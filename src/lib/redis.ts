@@ -6,8 +6,4 @@ const client = redis.createClient({
     url: redisConfig.url
 });
 
-(async() => {
-    await client.connect();
-})()
-
 export default client;
