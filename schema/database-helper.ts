@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import {database} from "../src/config/config";
-import {Sequelize} from "sequelize";
+import sequelize from "../src/models/connection";
 
 export class DatabaseHelper {
     static async setup() {
@@ -10,14 +10,6 @@ export class DatabaseHelper {
             // @ts-ignore
             query = query.replace(/\bpostgres\b/g, database.user)
 
-            // @ts-ignore
-            let sequelize = new Sequelize(database.name, database.user, database.pass, {
-                host: database.host,
-                dialect: database.dialect,
-                logging: false
-            })
-
-            await sequelize.authenticate()
             await sequelize.query(query)
 
             return Promise.resolve(true)
@@ -29,13 +21,6 @@ export class DatabaseHelper {
 
     static async tearDown() {
         try {
-            // @ts-ignore
-            let sequelize = new Sequelize(database.name, database.user, database.pass, {
-                host: database.host,
-                dialect: database.dialect
-            })
-
-            await sequelize.authenticate()
             await sequelize.query('DROP TABLE phone_number')
             await sequelize.query('DROP TABLE account')
 
