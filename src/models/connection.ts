@@ -1,12 +1,15 @@
 import { Sequelize } from "sequelize";
-import { database } from "../config/config";
+import { database, environment } from "../config/config";
 
-let sequelize = !!database.database_url ?
+let sequelize = environment === 'production' ?
     // @ts-ignore
     new Sequelize(database.database_url, {
         dialect: database.dialect,
-        logging: false
-        })
+        logging: false,
+        dialectOptions: {
+           ssl: true
+        }
+    })
     :
     // @ts-ignore
     new Sequelize(database.name, database.user, database.pass, {

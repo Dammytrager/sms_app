@@ -15,3 +15,5 @@ export const redis = {
     url: process.env.REDIS_URL
 }
 
+export const environment = process.env.NODE_ENV || 'development'
+
