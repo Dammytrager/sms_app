@@ -1,10 +1,19 @@
 import * as redis from "redis";
-import { redis as redisConfig } from "../config/config";
+import {environment, redis as redisConfig} from "../config/config";
 
 // @ts-ignore
-const client = redis.createClient({
-    url: redisConfig.url
-});
+const client =  environment === 'production' ?
+    redis.createClient({
+        url: redisConfig.url,
+        socket: {
+            tls: true,
+            rejectUnauthorized: false
+        }
+    })
+    :
+    redis.createClient({
+        url: redisConfig.url
+    });
 
 (async () => {
     await client.connect();
