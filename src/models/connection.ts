@@ -7,7 +7,10 @@ let sequelize = environment === 'production' ?
         dialect: database.dialect,
         logging: false,
         dialectOptions: {
-           ssl: true
+           ssl: {
+               require: true,
+               rejectUnauthorized: false
+           }
         }
     })
     :
