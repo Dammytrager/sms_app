@@ -8,7 +8,7 @@ export const database = {
     user: process.env.DB_USER,
     pass: process.env.DB_PASS,
     dialect: process.env.DB_DIALECT || 'postgres',
-    database_url: process.env.DATABSE_URL || false
+    database_url: process.env.DATABASE_URL || false
 };
 
 export const redis = {
